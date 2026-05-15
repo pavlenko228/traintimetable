@@ -7,6 +7,7 @@ function ConductorPage({ manifest, trains, loadManifest }) {
       <div className="tariffs">
         <select onChange={(e) => loadManifest(Number(e.target.value))}>
           <option value="">Выберите поезд</option>
+
           {trains.map((train) => (
             <option key={train.id} value={train.id}>
               Поезд {train.number}: {train.from_station} → {train.to_station}
@@ -23,7 +24,7 @@ function ConductorPage({ manifest, trains, loadManifest }) {
 
       <div className="split">
         <div className="wagon compact">
-          {Array.from({ length: 24 }, (_, i) => i + 1).map((seat) => (
+          {Array.from({ length: 40 }, (_, i) => i + 1).map((seat) => (
             <button
               key={seat}
               className={
@@ -39,7 +40,7 @@ function ConductorPage({ manifest, trains, loadManifest }) {
 
         <div className="passenger-list">
           {manifest.map((p) => (
-            <div className="mini-card" key={p.seat}>
+            <div className="mini-card" key={`${p.seat}-${p.doc}`}>
               <b>Место {p.seat}</b>
               <p>{p.name}</p>
               <p>{p.doc}</p>

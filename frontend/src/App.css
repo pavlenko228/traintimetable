@@ -185,3 +185,32 @@ textarea {
 .test-users button:hover {
   background: #e5e7eb;
 }
+
+.wagon.compact {
+  display: grid;
+  grid-template-columns: repeat(4, 36px);
+  gap: 8px;
+
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.wagon.compact .seat {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.wagon.compact .seat.taken {
+  background: #ef4444;
+  color: white;
+  border-color: #dc2626;
+}
+
+.passenger-list {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;           /* Firefox */
+  scrollbar-color: #d1d5db #f3f4f6;
+}

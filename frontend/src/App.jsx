@@ -72,6 +72,9 @@ function App() {
     loadTrains();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+  console.log("manifest updated", manifest);
+}, [manifest]);
 
   async function loadTrains() {
     try {
@@ -153,7 +156,6 @@ function App() {
     }
     if (role === "conductor") {
       setView("conductor");
-      loadManifest();
     }
   }
 
@@ -299,19 +301,20 @@ function App() {
     }
   }
 
-  async function loadManifest(tripId = null) {
+  async function loadManifest(tripId) {
   try {
     setApiError("");
 
-    const id = tripId || trains[0]?.id;
-
-    if (!id) {
+    if (!tripId) {
       setManifest([]);
       return;
     }
 
-    const data = await api(`/conductor/trips/${id}/manifest`);
+    const data = await api(`/conductor/trips/${tripId}/manifest`);
+    
+
     setManifest(data);
+    console.log("data from api", data);
   } catch (err) {
     setApiError(err.message);
     setManifest([]);
