@@ -272,18 +272,23 @@ function App() {
     }
   }
 
-  async function updateTripStatus(tripId, status) {
-    try {
-      setApiError("");
-      await api(`/dispatcher/trips/${tripId}/status`, {
-        method: "PATCH",
-        body: JSON.stringify({ status }),
-      });
-      await loadTrains();
-    } catch (err) {
-      setApiError(err.message);
-    }
+  async function updateTripStatus(tripId, status, delayMinutes = 0) {
+  try {
+    setApiError("");
+
+    await api(`/dispatcher/trips/${tripId}/status`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        status,
+        delay_minutes: delayMinutes,
+      }),
+    });
+
+    await loadTrains();
+  } catch (err) {
+    setApiError(err.message);
   }
+}
 
   async function loadUsers() {
     try {
@@ -294,14 +299,24 @@ function App() {
     }
   }
 
-  async function loadManifest() {
-    try {
-      const data = await api("/conductor/manifest");
-      setManifest(data);
-    } catch {
+  async function loadManifest(tripId = null) {
+  try {
+    setApiError("");
+
+    const id = tripId || trains[0]?.id;
+
+    if (!id) {
       setManifest([]);
+      return;
     }
+
+    const data = await api(`/conductor/trips/${id}/manifest`);
+    setManifest(data);
+  } catch (err) {
+    setApiError(err.message);
+    setManifest([]);
   }
+}
 
   return (
     <div className="app">
@@ -379,7 +394,13 @@ function App() {
 
         {view === "admin" && currentUser?.role === "admin" && <AdminPage users={users} />}
 
-        {view === "conductor" && currentUser?.role === "conductor" && <ConductorPage manifest={manifest} />}
+        {view === "conductor" && currentUser?.role === "conductor" && (
+          <ConductorPage
+            manifest={manifest}
+            trains={trains}
+            loadManifest={loadManifest}
+          />
+        )}
       </main>
     </div>
   );

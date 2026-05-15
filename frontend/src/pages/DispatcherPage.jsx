@@ -21,10 +21,14 @@ function DispatcherPage({ trains, updateTripStatus, loadTrains }) {
               <td>{t.status}</td>
               <td>
                 <button
+                  className="primary register-submit"
                   onClick={() =>
                     updateTripStatus(
                       t.id,
-                      t.status?.includes("Задерж") ? "По расписанию" : "Задерживается на 25 мин"
+                      t.status?.includes("Задерж")
+                        ? "По расписанию"
+                        : "Задерживается",
+                      t.status?.includes("Задерж") ? 0 : 25
                     )
                   }
                 >

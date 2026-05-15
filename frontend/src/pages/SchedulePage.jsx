@@ -52,7 +52,7 @@ function SchedulePage({ search, setSearch, trains, loadTrains, handleBuyClick })
               ))}
             </div>
 
-            <button onClick={() => handleBuyClick(train)}>Купить билет</button>
+            <button className="primary register-submit" onClick={() => handleBuyClick(train)}>Купить билет</button>
           </article>
         ))}
       </section>

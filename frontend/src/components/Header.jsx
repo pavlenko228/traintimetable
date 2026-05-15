@@ -60,7 +60,9 @@ function Header({ currentUser, setView, logout, loadMyOrders, loadUsers, loadMan
           </>
         ) : (
           <>
-            <button onClick={() => setView("register")}>Регистрация</button>
+            <button className="primary" onClick={() => setView("register")}>
+              Регистрация
+          </button>
             <button className="primary" onClick={() => setView("login")}>Войти</button>
           </>
         )}

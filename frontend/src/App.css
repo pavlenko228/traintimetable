@@ -162,3 +162,26 @@ textarea {
   border: 1px solid #dcdcdc;
   outline: none;
 }
+
+.test-users,
+.test-users h3,
+.test-users button,
+.login-info,
+.login-info p {
+  color: #222;
+}
+
+.test-users h3 {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.test-users button {
+  background: #f3f4f6;
+  border: 1px solid #dcdcdc;
+  margin-bottom: 8px;
+}
+
+.test-users button:hover {
+  background: #e5e7eb;
+}

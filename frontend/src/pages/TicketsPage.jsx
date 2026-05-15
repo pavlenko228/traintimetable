@@ -20,13 +20,12 @@ function TicketsPage({ orders, refundOrder }) {
             <span className="badge">{statusTitle(order.status)}</span>
           </div>
 
-          <div className="qr">QR</div>
+          
 
           {order.status === "paid" && <button onClick={() => refundOrder(order.id)}>Оформить возврат</button>}
         </div>
       ))}
 
-      <div className="notice">Возврат рассчитывается автоматически с учетом времени до отправления и сборов.</div>
     </section>
   );
 }

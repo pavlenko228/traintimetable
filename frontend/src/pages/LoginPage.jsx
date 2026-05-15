@@ -30,9 +30,7 @@ function LoginPage({ loginData, setLoginData, login, loginError, setView }) {
         {loginError && <div className="error">{loginError}</div>}
 
         <button className="primary">Войти</button>
-        <button type="button" onClick={() => setView("register")}>Создать аккаунт</button>
-
-        <div className="notice">Для всех тестовых пользователей пароль: <b>123</b></div>
+        <button type="button" className="primary register-submit" onClick={() => setView("register")}>Создать аккаунт</button>
       </form>
     </section>
   );

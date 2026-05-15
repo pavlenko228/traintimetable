@@ -78,11 +78,11 @@ function TrainPage({
           <input placeholder="Документ" value={passengerForm.document_number} onChange={(e) => setPassengerForm({ ...passengerForm, document_number: e.target.value })} />
           <input placeholder="Бонусная карта РЖД, если есть" value={passengerForm.bonus_card} onChange={(e) => setPassengerForm({ ...passengerForm, bonus_card: e.target.value })} />
 
-          <button className="primary" disabled={!selectedSeats.length || !passengerForm.passenger_name || !passengerForm.document_number} onClick={payOrder}>
+          <button className="primary register-submit" disabled={!selectedSeats.length || !passengerForm.passenger_name || !passengerForm.document_number} onClick={payOrder}>
             Оплатить картой
           </button>
 
-          {bookingDone && <div className="success">Оплата успешна. Электронный билет с QR-кодом отправлен на email.</div>}
+          {bookingDone && <div className="success">Оплата успешна</div>}
         </aside>
       </div>
     </section>

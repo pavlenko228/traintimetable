@@ -21,7 +21,7 @@ function RegisterPage({ registerData, setRegisterData, register, registerError, 
         {registerError && <div className="error">{registerError}</div>}
 
         <button className="primary">Зарегистрироваться</button>
-        <button type="button" onClick={() => setView("login")}>Уже есть аккаунт</button>
+        <button type="button" className="primary register-submit" onClick={() => setView("login")}>Уже есть аккаунт</button>
       </form>
     </section>
   );
